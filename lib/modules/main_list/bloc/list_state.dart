@@ -1,5 +1,4 @@
-import 'package:equatable/equatable.dart';
-import 'package:project_template/modules/main_list/models/list_item.dart';
+part of 'list_bloc.dart';
 
 // ignore: must_be_immutable
 abstract class ListState extends Equatable {

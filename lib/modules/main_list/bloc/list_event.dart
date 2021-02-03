@@ -1,6 +1,4 @@
-import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
-import 'package:project_template/modules/main_list/models/list_item.dart';
+part of 'list_bloc.dart';
 
 @immutable
 abstract class ListEvent extends Equatable {

@@ -1,7 +1,10 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:project_template/modules/main_list/bloc/list_event.dart';
-import 'package:project_template/modules/main_list/bloc/list_state.dart';
 import 'package:project_template/modules/main_list/models/list_item.dart';
+import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
+
+part 'list_event.dart';
+part 'list_state.dart';
 
 class NoteListBloc extends Bloc<ListEvent, ListState> {
   NoteListBloc(List<ListItem> items)
