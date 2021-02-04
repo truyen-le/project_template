@@ -31,6 +31,8 @@ dependencies:
 
   fluro: ^1.7.8
 
+  formz: ^0.3.2
+
   uuid: ^2.2.2
 
   # The following adds the Cupertino Icons font to your application.
