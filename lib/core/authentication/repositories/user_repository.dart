@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:project_template/modules/authentication/models/user.dart';
+import 'package:project_template/core/authentication/models/user.dart';
 import 'package:uuid/uuid.dart';
 
 

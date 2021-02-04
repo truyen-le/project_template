@@ -3,9 +3,9 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
-import 'package:project_template/modules/authentication/models/user.dart';
-import 'package:project_template/modules/authentication/repositories/authentication_repository.dart';
-import 'package:project_template/modules/authentication/repositories/user_repository.dart';
+import 'package:project_template/core/authentication/models/user.dart';
+import 'package:project_template/core/authentication/repositories/authentication_repository.dart';
+import 'package:project_template/core/authentication/repositories/user_repository.dart';
 
 part 'authentication_event.dart';
 part 'authentication_state.dart';
