@@ -5,9 +5,9 @@ class ListState extends Equatable {
 
   const ListState._({this.items});
 
-  const ListState.processing({this.items});
+  const ListState.processing({List<ListItem> items}):this._(items: items);
 
-  const ListState.processed({this.items});
+  const ListState.processed({List<ListItem> items}): this._(items: items);
 
   final List<ListItem> items;
 
