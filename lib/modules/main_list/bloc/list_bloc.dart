@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 part 'list_event.dart';
 part 'list_state.dart';
 
-class NoteListBloc extends Bloc<ListEvent, ListState> {
-  NoteListBloc(List<ListItem> items)
+class ListBloc extends Bloc<ListEvent, ListState> {
+  ListBloc(List<ListItem> items)
       : super(ProcessedState(items: items));
 
   @override
