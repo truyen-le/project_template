@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_template/modules/main_list/main_list.dart';
+import 'package:project_template/modules/home/home.dart';
 
 void main() {
   runApp(MyApp());
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MainListPage(),
+      home: HomePage(),
     );
   }
 }
