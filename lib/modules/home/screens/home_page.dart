@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:project_template/modules/login/login.dart';
 import 'package:project_template/widgets/widgets.dart';
 
 import '../home.dart';
 
 class HomePage extends StatefulWidget {
+  static Route route() {
+    return MaterialPageRoute<void>(builder: (_) => HomePage());
+  }
+
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -11,6 +16,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    final _navigatorKey = GlobalKey<NavigatorState>();
     return Scaffold(
       body: Container(
         child: Column(
@@ -47,10 +53,19 @@ class _HomePageState extends State<HomePage> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomNavBar(
-        tabs: {
-          'Explore': Icons.explore,
-          'Login': Icons.contact_page_outlined,
-        },
+        tabs: [
+          TabItem(
+            title: 'Explore',
+            icon: Icons.explore,
+            onPressed: () {},
+          ),
+          TabItem(
+              title: 'Login',
+              icon: Icons.contact_page_outlined,
+              onPressed: () {
+                Navigator.of(context).push(LoginPage.route());
+              })
+        ],
       ),
     );
   }
