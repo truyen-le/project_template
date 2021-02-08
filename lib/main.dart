@@ -1,10 +1,13 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project_template/constants/constants.dart';
 import 'package:project_template/core/authentication/authentication.dart';
 import 'package:project_template/modules/home/home.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(App());
 }
 
@@ -17,7 +20,6 @@ class App extends StatelessWidget {
       child: BlocProvider(
         create: (context) => AuthenticationBloc(
           authenticationRepository: context.read<AuthenticationRepository>(),
-          userRepository: UserRepository(),
         ),
         child: AppView(),
       ),

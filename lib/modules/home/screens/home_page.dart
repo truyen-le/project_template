@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:project_template/modules/login/login.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:project_template/core/authentication/authentication.dart';
+import 'package:project_template/modules/login/screens/login_page.dart';
 import 'package:project_template/widgets/widgets.dart';
 
 import '../home.dart';
@@ -48,24 +50,31 @@ class _HomePageState extends State<HomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.white,
-        onPressed: null,
+        onPressed: () {
+          print(context.read<AuthenticationBloc>().state.user.email);
+        },
         child: FlutterLogo(),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: BottomNavBar(
-        tabs: [
-          TabItem(
-            title: 'Explore',
-            icon: Icons.explore,
-            onPressed: () {},
-          ),
-          TabItem(
-              title: 'Login',
+      bottomNavigationBar: BlocBuilder<AuthenticationBloc, AuthenticationState>(
+        builder: (context, state) => BottomNavBar(
+          tabs: [
+            TabItem(
+              title: 'Explore',
+              icon: Icons.explore,
+              onPressed: () {},
+            ),
+            TabItem(
+              title: state.status == AuthenticationStatus.authenticated
+                  ? 'Profile'
+                  : 'Login',
               icon: Icons.contact_page_outlined,
               onPressed: () {
                 Navigator.of(context).push(LoginPage.route());
-              })
-        ],
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

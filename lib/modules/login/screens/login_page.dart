@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project_template/core/authentication/authentication.dart';
 import 'package:project_template/modules/login/bloc/login_bloc.dart';
-import 'package:project_template/modules/login/screens/login_brand_logo.dart';
-import 'package:project_template/modules/login/screens/login_form.dart';
+
+import 'login_brand_logo.dart';
+import 'login_form.dart';
 
 class LoginPage extends StatelessWidget {
   static Route route() {

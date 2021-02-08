@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
 class InputTextForm extends StatelessWidget {
-  const InputTextForm({this.prefixIcon, this.isObscureText});
+  const InputTextForm({this.prefixIcon, this.isObscureText, this.onChanged});
 
   final IconData prefixIcon;
   final bool isObscureText;
+  final ValueChanged<String> onChanged;
   @override
   Widget build(BuildContext context) {
     bool _showText = false;
@@ -20,6 +21,7 @@ class InputTextForm extends StatelessWidget {
           fillColor: Colors.grey[100],
           prefixIcon: Icon(this.prefixIcon),
         ),
+        onChanged: onChanged,
       ),
     );
   }

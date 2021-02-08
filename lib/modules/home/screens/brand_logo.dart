@@ -13,7 +13,7 @@ class BrandLogo extends StatelessWidget {
               size: maxHeight * 0.7,
             ),
             Text(
-              'Flutter Template',
+              'Booking Template',
               style: TextStyle(
                 fontSize: maxHeight * 0.25,
               ),
