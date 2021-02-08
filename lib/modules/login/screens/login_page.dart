@@ -23,16 +23,25 @@ class LoginPage extends StatelessWidget {
             authenticationRepository:
                 RepositoryProvider.of<AuthenticationRepository>(context),
           ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              LoginBrandLogo(),
-              SizedBox(
-                height: maxHeight * 0.075,
-              ),
-              LoginForm(),
-            ],
+          child: BlocListener<AuthenticationBloc, AuthenticationState>(
+            listenWhen: (previousState, currentState) =>
+                previousState.status != currentState.status,
+            listener: (context, state) {
+              if (state.status == AuthenticationStatus.authenticated) {
+                Navigator.of(context).pop();
+              }
+            },
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                LoginBrandLogo(),
+                SizedBox(
+                  height: maxHeight * 0.075,
+                ),
+                LoginForm(),
+              ],
+            ),
           ),
         ),
       ),

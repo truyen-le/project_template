@@ -2,7 +2,6 @@ import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
-import 'package:project_template/core/authentication/authentication.dart';
 import 'package:project_template/modules/login/bloc/login_bloc.dart';
 import 'package:project_template/widgets/widgets.dart';
 
@@ -135,32 +134,21 @@ class _SignInButton extends StatelessWidget {
       child: Container(
         height: 45,
         width: double.infinity,
-        child: BlocListener<AuthenticationBloc, AuthenticationState>(
-          listenWhen: (previousState, currentState) =>
-              previousState.status != currentState.status,
-          listener: (context, state) {
-            print(state.status.toString());
-            if (state.status == AuthenticationStatus.authenticated) {
-              Navigator.of(context).pop();
-            }
-          },
-          child: BlocBuilder<LoginBloc, LoginState>(
-            buildWhen: (previous, current) => previous.status != current.status,
-            builder: (context, state) => state.status.isSubmissionInProgress
-                ? Center(child: CircularProgressIndicator())
-                : RaisedButton(
-                    color: Colors.blue,
-                    onPressed: state.status.isValidated
-                        ? () => context
-                            .read<LoginBloc>()
-                            .add(LoginWithCredentials())
-                        : null,
-                    child: Text(
-                      'Sign in',
-                      style: TextStyle(color: Colors.white),
-                    ),
+        child: BlocBuilder<LoginBloc, LoginState>(
+          buildWhen: (previous, current) => previous.status != current.status,
+          builder: (context, state) => state.status.isSubmissionInProgress
+              ? Center(child: CircularProgressIndicator())
+              : RaisedButton(
+                  color: Colors.blue,
+                  onPressed: state.status.isValidated
+                      ? () =>
+                          context.read<LoginBloc>().add(LoginWithCredentials())
+                      : null,
+                  child: Text(
+                    'Sign in',
+                    style: TextStyle(color: Colors.white),
                   ),
-          ),
+                ),
         ),
       ),
     );

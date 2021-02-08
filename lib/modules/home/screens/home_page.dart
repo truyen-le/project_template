@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project_template/core/authentication/authentication.dart';
 import 'package:project_template/modules/login/screens/login_page.dart';
+import 'package:project_template/modules/user_profile/user_profile.dart';
 import 'package:project_template/widgets/widgets.dart';
 
 import '../home.dart';
@@ -70,7 +71,9 @@ class _HomePageState extends State<HomePage> {
                   : 'Login',
               icon: Icons.contact_page_outlined,
               onPressed: () {
-                Navigator.of(context).push(LoginPage.route());
+                state.status == AuthenticationStatus.authenticated
+                    ? Navigator.of(context).push(UserProfilePage.route())
+                    : Navigator.of(context).push(LoginPage.route());
               },
             ),
           ],
