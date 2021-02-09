@@ -12,10 +12,12 @@ class LoginBrandLogo extends StatelessWidget {
             FlutterLogo(
               size: maxHeight * 0.7,
             ),
-            Text(
-              'Sign in to Booking Template',
-              style: TextStyle(
-                fontSize: maxHeight * 0.25,
+            FittedBox(
+              child: Text(
+                'Sign in to Booking Template',
+                style: TextStyle(
+                  fontSize: maxHeight * 0.25,
+                ),
               ),
             )
           ],

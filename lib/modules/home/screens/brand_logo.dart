@@ -12,10 +12,12 @@ class BrandLogo extends StatelessWidget {
             FlutterLogo(
               size: maxHeight * 0.7,
             ),
-            Text(
-              'Booking Template',
-              style: TextStyle(
-                fontSize: maxHeight * 0.25,
+            FittedBox(
+              child: Text(
+                'Booking Template',
+                style: TextStyle(
+                  fontSize: maxHeight * 0.25,
+                ),
               ),
             )
           ],
