@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:project_template/modules/login/bloc/login_bloc.dart';
+import 'package:project_template/modules/sign_up/screens/screens.dart';
 import 'package:project_template/widgets/widgets.dart';
 
 class LoginForm extends StatelessWidget {
@@ -24,7 +25,7 @@ class LoginForm extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text('Email'),
-            _UsernameInput(),
+            _EmailInput(),
             SizedBox(
               height: maxHeight * 0.02,
             ),
@@ -50,9 +51,14 @@ class LoginForm extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text('Don\'t have an account? '),
-                Text(
-                  'Sign up now',
-                  style: TextStyle(color: Colors.blue),
+                InkWell(
+                  onTap: () {
+                    Navigator.of(context).pushReplacement(SignUpPage.route());
+                  },
+                  child: Text(
+                    'Sign up now.',
+                    style: TextStyle(color: Colors.blue),
+                  ),
                 )
               ],
             ),
@@ -96,7 +102,7 @@ class LoginForm extends StatelessWidget {
   }
 }
 
-class _UsernameInput extends StatelessWidget {
+class _EmailInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<LoginBloc, LoginState>(

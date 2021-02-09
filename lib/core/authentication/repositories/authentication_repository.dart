@@ -45,6 +45,7 @@ class AuthenticationRepository {
   ///
   /// Throws a [SignUpFailure] if an exception occurs.
   Future<void> signUp({
+    String name = '',
     @required String email,
     @required String password,
   }) async {
@@ -54,6 +55,7 @@ class AuthenticationRepository {
         email: email,
         password: password,
       );
+      _firebaseAuth.currentUser.updateProfile(displayName: name);
     } on Exception {
       throw SignUpFailure();
     }
