@@ -30,16 +30,18 @@ class SignUpPage extends StatelessWidget {
                 Navigator.of(context).pop();
               }
             },
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SignUpBrandLogo(),
-                SizedBox(
-                  height: maxHeight * 0.075,
-                ),
-                SignUpForm(),
-              ],
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SignUpBrandLogo(),
+                  SizedBox(
+                    height: maxHeight * 0.075,
+                  ),
+                  SignUpForm(),
+                ],
+              ),
             ),
           ),
         ),

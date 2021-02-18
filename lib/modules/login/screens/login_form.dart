@@ -1,4 +1,5 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
@@ -47,20 +48,24 @@ class LoginForm extends StatelessWidget {
             SizedBox(
               height: maxHeight * 0.04,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('Don\'t have an account? '),
-                InkWell(
-                  onTap: () {
-                    Navigator.of(context).pushReplacement(SignUpPage.route());
-                  },
-                  child: Text(
-                    'Sign up now.',
-                    style: TextStyle(color: Colors.blue),
-                  ),
-                )
-              ],
+            Center(
+              child: RichText(
+                text: TextSpan(
+                  style: DefaultTextStyle.of(context).style,
+                  children: [
+                    TextSpan(text: 'Don\'t have an account? '),
+                    TextSpan(
+                      text: 'Sign up now.',
+                      style: TextStyle(color: Colors.blue),
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () {
+                          Navigator.of(context)
+                              .pushReplacement(SignUpPage.route());
+                        },
+                    ),
+                  ],
+                ),
+              ),
             ),
             SizedBox(
               height: maxHeight * 0.04,

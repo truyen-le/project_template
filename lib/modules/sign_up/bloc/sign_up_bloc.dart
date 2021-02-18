@@ -4,6 +4,7 @@ import 'package:formz/formz.dart';
 import 'package:meta/meta.dart';
 import 'package:project_template/core/authentication/repositories/authentication_repository.dart';
 import 'package:project_template/modules/sign_up/models/models.dart';
+import 'package:project_template/modules/sign_up/models/terms_confirmed.dart';
 
 part 'sign_up_event.dart';
 part 'sign_up_state.dart';
@@ -25,6 +26,8 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
       yield _mapEmailChangedToState(event, state);
     } else if (event is SignUpPasswordChanged) {
       yield _mapPasswordChangedToState(event, state);
+    } else if (event is SignUpTermsConfirmedChanged) {
+      yield _mapTermsConfirmedChangedToState(event, state);
     } else if (event is SignUpWithEmailAndPassword) {
       yield* _mapLoginWithCredentialsToState(event, state);
     }
@@ -37,7 +40,8 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     final name = Name.dirty(event.name);
     return state.copyWith(
       name: name,
-      status: Formz.validate([name, state.email, state.password]),
+      status: Formz.validate(
+          [name, state.email, state.password, state.termsConfirmed]),
     );
   }
 
@@ -48,7 +52,8 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     final email = Email.dirty(event.email);
     return state.copyWith(
       email: email,
-      status: Formz.validate([state.name, email, state.password]),
+      status: Formz.validate(
+          [state.name, email, state.password, state.termsConfirmed]),
     );
   }
 
@@ -59,7 +64,20 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     final password = Password.dirty(event.password);
     return state.copyWith(
       password: password,
-      status: Formz.validate([state.name, state.email, password]),
+      status: Formz.validate(
+          [state.name, state.email, password, state.termsConfirmed]),
+    );
+  }
+
+  SignUpState _mapTermsConfirmedChangedToState(
+    SignUpTermsConfirmedChanged event,
+    SignUpState state,
+  ) {
+    final termsConfirmed = TermsConfirmed.dirty(event.termsConfirmed);
+    return state.copyWith(
+      termsConfirmed: termsConfirmed,
+      status: Formz.validate(
+          [state.name, state.email, state.password, termsConfirmed]),
     );
   }
 

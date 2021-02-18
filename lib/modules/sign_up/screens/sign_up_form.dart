@@ -1,4 +1,5 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
@@ -38,20 +39,11 @@ class SignUpForm extends StatelessWidget {
             SizedBox(
               height: maxHeight * 0.04,
             ),
-            _SignUpButton(),
+            _AcceptTermsCheckbox(),
             SizedBox(
               height: maxHeight * 0.04,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('Don\'t have an account? '),
-                Text(
-                  'Sign up now',
-                  style: TextStyle(color: Colors.blue),
-                )
-              ],
-            ),
+            _SignUpButton(),
             SizedBox(
               height: maxHeight * 0.04,
             ),
@@ -126,12 +118,58 @@ class _PasswordInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SignUpBloc, SignUpState>(
-      buildWhen: (previous, current) => previous.email != current.email,
+      buildWhen: (previous, current) => previous.password != current.password,
       builder: (context, state) => InputTextForm(
         prefixIcon: Icons.lock_outline_rounded,
         isObscureText: true,
         onChanged: (password) =>
             context.read<SignUpBloc>().add(SignUpPasswordChanged(password)),
+      ),
+    );
+  }
+}
+
+class _AcceptTermsCheckbox extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<SignUpBloc, SignUpState>(
+      buildWhen: (previous, current) =>
+          previous.termsConfirmed != current.termsConfirmed,
+      builder: (context, state) => Row(
+        children: [
+          Expanded(
+            flex: 1,
+            child: Checkbox(
+              value: state.termsConfirmed.value,
+              onChanged: (termsConfirmed) => context
+                  .read<SignUpBloc>()
+                  .add(SignUpTermsConfirmedChanged(termsConfirmed)),
+            ),
+          ),
+          Expanded(
+            flex: 9,
+            child: RichText(
+              text: TextSpan(
+                style: DefaultTextStyle.of(context).style,
+                children: [
+                  TextSpan(
+                      text: 'Creating an account means you\'re accept our '),
+                  TextSpan(
+                    text: 'Terms of Service, Privacy Policy, ',
+                    style: TextStyle(color: Colors.blue),
+                    recognizer: TapGestureRecognizer()..onTap = () {},
+                  ),
+                  TextSpan(text: 'and our default '),
+                  TextSpan(
+                    text: 'Notification Settings.',
+                    style: TextStyle(color: Colors.blue),
+                    recognizer: TapGestureRecognizer()..onTap = () {},
+                  ),
+                ],
+              ),
+            ),
+          )
+        ],
       ),
     );
   }

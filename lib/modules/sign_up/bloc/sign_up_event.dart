@@ -43,6 +43,15 @@ class SignUpConfirmedPasswordChanged extends SignUpEvent {
   List<Object> get props => [confirmedPassword];
 }
 
+class SignUpTermsConfirmedChanged extends SignUpEvent {
+  const SignUpTermsConfirmedChanged(this.termsConfirmed);
+
+  final bool termsConfirmed;
+
+  @override
+  List<Object> get props => [termsConfirmed];
+}
+
 class SignUpWithEmailAndPassword extends SignUpEvent {
   const SignUpWithEmailAndPassword();
 }
