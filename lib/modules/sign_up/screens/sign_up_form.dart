@@ -24,17 +24,26 @@ class SignUpForm extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Name'),
+            Text(
+              'Name',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
             _NameInput(),
             SizedBox(
               height: maxHeight * 0.02,
             ),
-            Text('Email'),
+            Text(
+              'Email',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
             _EmailInput(),
             SizedBox(
               height: maxHeight * 0.02,
             ),
-            Text('Password'),
+            Text(
+              'Password',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
             _PasswordInput(),
             SizedBox(
               height: maxHeight * 0.04,

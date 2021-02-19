@@ -25,7 +25,10 @@ class LoginForm extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Email'),
+            Text(
+              'Email',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
             _EmailInput(),
             SizedBox(
               height: maxHeight * 0.02,
@@ -33,10 +36,16 @@ class LoginForm extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('Password'),
                 Text(
-                  'Forgot Password?',
-                  style: TextStyle(color: Colors.blue),
+                  'Password',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                RichText(
+                  text: TextSpan(
+                    text: 'Forgot Password?',
+                    style: TextStyle(color: Colors.blue),
+                    recognizer: TapGestureRecognizer()..onTap = () {},
+                  ),
                 ),
               ],
             ),
