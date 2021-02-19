@@ -3,6 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
+import 'package:project_template/modules/forgot_password/forgot_password.dart';
 import 'package:project_template/modules/login/bloc/login_bloc.dart';
 import 'package:project_template/modules/sign_up/screens/screens.dart';
 import 'package:project_template/widgets/widgets.dart';
@@ -44,7 +45,10 @@ class LoginForm extends StatelessWidget {
                   text: TextSpan(
                     text: 'Forgot Password?',
                     style: TextStyle(color: Colors.blue),
-                    recognizer: TapGestureRecognizer()..onTap = () {},
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () {
+                        Navigator.of(context).push(ForgotPasswordPage.route());
+                      },
                   ),
                 ),
               ],
@@ -124,6 +128,7 @@ class _EmailInput extends StatelessWidget {
       builder: (context, state) => InputTextForm(
         prefixIcon: Icons.email_outlined,
         isObscureText: false,
+        keyboardType: TextInputType.emailAddress,
         onChanged: (email) =>
             context.read<LoginBloc>().add(LoginEmailChanged(email)),
       ),
@@ -139,6 +144,7 @@ class _PasswordInput extends StatelessWidget {
       builder: (context, state) => InputTextForm(
         prefixIcon: Icons.lock_outline_rounded,
         isObscureText: true,
+        keyboardType: TextInputType.visiblePassword,
         onChanged: (password) =>
             context.read<LoginBloc>().add(LoginPasswordChanged(password)),
       ),

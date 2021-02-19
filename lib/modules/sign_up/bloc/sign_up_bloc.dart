@@ -4,7 +4,6 @@ import 'package:formz/formz.dart';
 import 'package:meta/meta.dart';
 import 'package:project_template/core/authentication/repositories/authentication_repository.dart';
 import 'package:project_template/modules/sign_up/models/models.dart';
-import 'package:project_template/modules/sign_up/models/terms_confirmed.dart';
 
 part 'sign_up_event.dart';
 part 'sign_up_state.dart';

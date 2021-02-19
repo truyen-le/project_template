@@ -14,6 +14,9 @@ class LogInWithEmailAndPasswordFailure implements Exception {}
 /// Thrown during the sign in with google process if a failure occurs.
 class LogInWithGoogleFailure implements Exception {}
 
+/// Thrown during the send password reset email process if a failure occurs.
+class SendPasswordResetEmailFailure implements Exception {}
+
 /// Thrown during the logout process if a failure occurs.
 class LogOutFailure implements Exception {}
 
@@ -93,6 +96,22 @@ class AuthenticationRepository {
       );
     } on Exception {
       throw LogInWithEmailAndPasswordFailure();
+    }
+  }
+
+  /// Send password reset with the provided [email].
+  ///
+  /// Throws a [SendPasswordResetEmailFailure] if an exception occurs.
+  Future<void> sendPasswordResetEmail({
+    @required String email,
+  }) async {
+    assert(email != null);
+    try {
+      await _firebaseAuth.sendPasswordResetEmail(
+        email: email,
+      );
+    } on Exception {
+      throw SendPasswordResetEmailFailure();
     }
   }
 

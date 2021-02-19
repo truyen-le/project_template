@@ -19,8 +19,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    final _navigatorKey = GlobalKey<NavigatorState>();
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Container(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 
 class InputTextForm extends StatelessWidget {
-  const InputTextForm({this.prefixIcon, this.isObscureText, this.onChanged});
+  const InputTextForm(
+      {this.prefixIcon,
+      this.isObscureText = false,
+      this.keyboardType,
+      this.onChanged});
 
   final IconData prefixIcon;
   final bool isObscureText;
+  final TextInputType keyboardType;
   final ValueChanged<String> onChanged;
   @override
   Widget build(BuildContext context) {
@@ -16,6 +21,7 @@ class InputTextForm extends StatelessWidget {
         child: TextFormField(
           showCursor: true,
           obscureText: this.isObscureText && !_showText,
+          keyboardType: this.keyboardType,
           decoration: InputDecoration(
             enabledBorder: InputBorder.none,
             focusedBorder: InputBorder.none,

@@ -101,6 +101,7 @@ class _NameInput extends StatelessWidget {
       builder: (context, state) => InputTextForm(
         prefixIcon: Icons.person_outline,
         isObscureText: false,
+        keyboardType: TextInputType.name,
         onChanged: (name) =>
             context.read<SignUpBloc>().add(SignUpNameChanged(name)),
       ),
@@ -116,6 +117,7 @@ class _EmailInput extends StatelessWidget {
       builder: (context, state) => InputTextForm(
         prefixIcon: Icons.email_outlined,
         isObscureText: false,
+        keyboardType: TextInputType.emailAddress,
         onChanged: (email) =>
             context.read<SignUpBloc>().add(SignUpEmailChanged(email)),
       ),
@@ -131,6 +133,7 @@ class _PasswordInput extends StatelessWidget {
       builder: (context, state) => InputTextForm(
         prefixIcon: Icons.lock_outline_rounded,
         isObscureText: true,
+        keyboardType: TextInputType.visiblePassword,
         onChanged: (password) =>
             context.read<SignUpBloc>().add(SignUpPasswordChanged(password)),
       ),
