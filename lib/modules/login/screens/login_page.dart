@@ -14,33 +14,35 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final maxHeight = MediaQuery.of(context).size.height;
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: Padding(
-        padding: EdgeInsets.all(12),
-        child: BlocProvider(
-          create: (context) => LoginBloc(
-            authenticationRepository:
-                RepositoryProvider.of<AuthenticationRepository>(context),
-          ),
-          child: BlocListener<AuthenticationBloc, AuthenticationState>(
-            listenWhen: (previousState, currentState) =>
-                previousState.status != currentState.status,
-            listener: (context, state) {
-              if (state.status == AuthenticationStatus.authenticated) {
-                Navigator.of(context).pop();
-              }
-            },
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                LoginBrandLogo(),
-                SizedBox(
-                  height: maxHeight * 0.075,
-                ),
-                LoginForm(),
-              ],
+    return SafeArea(
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        body: Padding(
+          padding: EdgeInsets.all(12),
+          child: BlocProvider(
+            create: (context) => LoginBloc(
+              authenticationRepository:
+                  RepositoryProvider.of<AuthenticationRepository>(context),
+            ),
+            child: BlocListener<AuthenticationBloc, AuthenticationState>(
+              listenWhen: (previousState, currentState) =>
+                  previousState.status != currentState.status,
+              listener: (context, state) {
+                if (state.status == AuthenticationStatus.authenticated) {
+                  Navigator.of(context).pop();
+                }
+              },
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  LoginBrandLogo(),
+                  SizedBox(
+                    height: maxHeight * 0.05,
+                  ),
+                  LoginForm(),
+                ],
+              ),
             ),
           ),
         ),
