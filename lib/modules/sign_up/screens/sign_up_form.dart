@@ -224,19 +224,23 @@ class _SignUpWithGoogleButton extends StatelessWidget {
       height: 45,
       width: double.infinity,
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.black12),
         borderRadius: BorderRadius.circular(10),
       ),
-      child: InkWell(
-        onTap: () {},
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(EvaIcons.googleOutline),
-            Text(
-              ' Sign up with Google',
-            ),
-          ],
+      child: BlocBuilder<SignUpBloc, SignUpState>(
+        builder: (context, state) => OutlineButton(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(EvaIcons.googleOutline),
+              Text(
+                ' Sign up with Google',
+              ),
+            ],
+          ),
+          onPressed: () => context.read<SignUpBloc>().add(SignUpWithGoogle()),
         ),
       ),
     );

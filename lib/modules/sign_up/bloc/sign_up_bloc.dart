@@ -29,6 +29,8 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
       yield _mapTermsConfirmedChangedToState(event, state);
     } else if (event is SignUpWithEmailAndPassword) {
       yield* _mapLoginWithCredentialsToState(event, state);
+    } else if (event is SignUpWithGoogle) {
+      yield* _mapLoginWithGoogleToState(event, state);
     }
   }
 
@@ -94,6 +96,23 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
       );
       yield state.copyWith(status: FormzStatus.submissionSuccess);
     } on Exception {
+      yield state.copyWith(status: FormzStatus.submissionFailure);
+    } on Error {
+      yield state.copyWith(status: FormzStatus.submissionFailure);
+    }
+  }
+
+  Stream<SignUpState> _mapLoginWithGoogleToState(
+    SignUpWithGoogle event,
+    SignUpState state,
+  ) async* {
+    yield state.copyWith(status: FormzStatus.submissionInProgress);
+    try {
+      await _authenticationRepository.logInWithGoogle();
+      yield state.copyWith(status: FormzStatus.submissionSuccess);
+    } on Exception {
+      yield state.copyWith(status: FormzStatus.submissionFailure);
+    } on Error {
       yield state.copyWith(status: FormzStatus.submissionFailure);
     }
   }

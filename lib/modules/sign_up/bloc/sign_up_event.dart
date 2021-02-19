@@ -55,3 +55,7 @@ class SignUpTermsConfirmedChanged extends SignUpEvent {
 class SignUpWithEmailAndPassword extends SignUpEvent {
   const SignUpWithEmailAndPassword();
 }
+
+class SignUpWithGoogle extends SignUpEvent {
+  const SignUpWithGoogle();
+}

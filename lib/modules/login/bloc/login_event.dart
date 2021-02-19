@@ -28,3 +28,7 @@ class LoginPasswordChanged extends LoginEvent {
 class LoginWithCredentials extends LoginEvent {
   const LoginWithCredentials();
 }
+
+class LoginWithGoogle extends LoginEvent {
+  const LoginWithGoogle();
+}

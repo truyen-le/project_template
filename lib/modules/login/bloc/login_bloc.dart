@@ -29,6 +29,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       yield _mapPasswordChangedToState(event, state);
     } else if (event is LoginWithCredentials) {
       yield* _mapLoginWithCredentialsToState(event, state);
+    } else if (event is LoginWithGoogle) {
+      yield* _mapLoginWithGoogleToState(event, state);
     }
   }
 
@@ -67,6 +69,23 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       );
       yield state.copyWith(status: FormzStatus.submissionSuccess);
     } on Exception {
+      yield state.copyWith(status: FormzStatus.submissionFailure);
+    } on Error {
+      yield state.copyWith(status: FormzStatus.submissionFailure);
+    }
+  }
+
+  Stream<LoginState> _mapLoginWithGoogleToState(
+    LoginWithGoogle event,
+    LoginState state,
+  ) async* {
+    yield state.copyWith(status: FormzStatus.submissionInProgress);
+    try {
+      await _authenticationRepository.logInWithGoogle();
+      yield state.copyWith(status: FormzStatus.submissionSuccess);
+    } on Exception {
+      yield state.copyWith(status: FormzStatus.submissionFailure);
+    } on Error {
       yield state.copyWith(status: FormzStatus.submissionFailure);
     }
   }
