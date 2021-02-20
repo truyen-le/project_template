@@ -1,15 +1,14 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project_template/core/authentication/authentication.dart';
-import 'package:project_template/modules/explore/explore.dart';
-import 'package:project_template/modules/home/home.dart';
 import 'package:project_template/modules/login/login.dart';
 import 'package:project_template/modules/user_profile/user_profile.dart';
 import 'package:project_template/widgets/widgets.dart';
 
-class HomePage extends StatelessWidget {
+class ExplorePage extends StatelessWidget {
   static Route route() {
-    return MaterialPageRoute<void>(builder: (_) => HomePage());
+    return MaterialPageRoute<void>(builder: (_) => ExplorePage());
   }
 
   @override
@@ -17,38 +16,47 @@ class HomePage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-        body: Container(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              BrandLogo(),
-              HomeList(
-                listItems: [
-                  ItemDetail(
-                    title: 'Destination',
-                    subtitle: 'Where are you cruising to?',
-                    icon: Icons.location_on,
-                  ),
-                  ItemDetail(
-                    title: 'Departure Port',
-                    subtitle: 'Find your nearest port',
-                    icon: Icons.directions_boat,
-                  ),
-                  ItemDetail(
-                    title: 'Sailing months',
-                    subtitle: 'Add Dates',
-                    icon: Icons.location_on,
-                  ),
-                ],
-              ),
-            ],
+        appBar: AppBar(
+          leading: IconButton(
+            padding: EdgeInsets.zero,
+            splashRadius: 1,
+            iconSize: 15,
+            icon: Icon(
+              Icons.arrow_back_ios_outlined,
+              color: Colors.black,
+            ),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
           ),
+          title: Text(
+            'Explore',
+            style: TextStyle(
+              fontSize: 15,
+            ),
+          ),
+          actions: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: FlatButton(
+                  color: Colors.black12,
+                  child: Text('Cancel'),
+                  onPressed: () {},
+                ),
+              ),
+            )
+          ],
         ),
+        body: Container(),
         floatingActionButton: FloatingActionButton(
-          backgroundColor: Colors.white,
+          backgroundColor: Colors.blue,
           onPressed: () {},
-          child: FlutterLogo(),
+          child: Icon(
+            Icons.search,
+            size: 35,
+          ),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         bottomNavigationBar:
@@ -58,9 +66,7 @@ class HomePage extends StatelessWidget {
               TabItem(
                 title: 'Explore',
                 icon: Icons.explore,
-                onPressed: () {
-                  Navigator.of(context).push(ExplorePage.route());
-                },
+                onPressed: () {},
               ),
               TabItem(
                 title: state.status == AuthenticationStatus.authenticated

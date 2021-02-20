@@ -43,6 +43,17 @@ class _AppViewState extends State<AppView> {
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
+        appBarTheme: AppBarTheme(
+          elevation: 5,
+          color: Colors.white,
+          textTheme: TextTheme(
+            headline6: TextStyle(
+              color: Colors.black,
+              fontSize: 15,
+            ),
+          ),
+          centerTitle: false,
+        ),
         iconTheme: IconThemeData(
           color: iconColor,
         ),
