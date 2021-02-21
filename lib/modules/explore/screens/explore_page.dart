@@ -1,7 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project_template/core/authentication/authentication.dart';
+import 'package:project_template/modules/explore/bloc/explore_bloc.dart';
+import 'package:project_template/modules/explore/screens/screens.dart';
 import 'package:project_template/modules/login/login.dart';
 import 'package:project_template/modules/user_profile/user_profile.dart';
 import 'package:project_template/widgets/widgets.dart';
@@ -49,7 +50,29 @@ class ExplorePage extends StatelessWidget {
             )
           ],
         ),
-        body: Container(),
+        body: BlocProvider(
+          create: (context) => ExploreBloc(),
+          child: Container(
+            margin: EdgeInsets.fromLTRB(20.0, 30.0, 0.0, 30.0),
+            child: Stack(
+              children: [
+                Row(
+                  children: [
+                    Expanded(
+                      flex: 9,
+                      child: ExploreGeneralInfo(),
+                    ),
+                    Expanded(
+                      flex: 2,
+                      child: SizedBox(),
+                    )
+                  ],
+                ),
+                ExploreCarousel(),
+              ],
+            ),
+          ),
+        ),
         floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.blue,
           onPressed: () {},
@@ -66,6 +89,7 @@ class ExplorePage extends StatelessWidget {
               TabItem(
                 title: 'Explore',
                 icon: Icons.explore,
+                isSelected: true,
                 onPressed: () {},
               ),
               TabItem(
