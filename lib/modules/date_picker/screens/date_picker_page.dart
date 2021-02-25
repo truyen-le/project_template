@@ -71,11 +71,7 @@ class _DatePickerPageState extends State<DatePickerPage>
                 return Container(
                   width: 50,
                   height: 50,
-<<<<<<< HEAD
                   decoration: BoxDecoration(
-=======
-                  decoration: new BoxDecoration(
->>>>>>> b389b1fe85b2039414b14b96c62299c7c0b70530
                     color: Colors.transparent,
                     shape: BoxShape.rectangle,
                   ),
@@ -90,18 +86,10 @@ class _DatePickerPageState extends State<DatePickerPage>
               dayBuilder: (context, date, _) {
                 return Center(
                   child: Container(
-<<<<<<< HEAD
                     width: 50,
                     height: 50,
                     decoration: BoxDecoration(
                       color: Colors.red,
-=======
-                    // margin: const EdgeInsets.all(4.0),
-                    width: 50,
-                    height: 50,
-                    decoration: new BoxDecoration(
-                      color: Colors.white,
->>>>>>> b389b1fe85b2039414b14b96c62299c7c0b70530
                       shape: BoxShape.rectangle,
                     ),
                     child: Center(
@@ -115,10 +103,6 @@ class _DatePickerPageState extends State<DatePickerPage>
               },
               selectedDayBuilder: (context, date, _) {
                 return Container(
-<<<<<<< HEAD
-=======
-                  margin: const EdgeInsets.all(4.0),
->>>>>>> b389b1fe85b2039414b14b96c62299c7c0b70530
                   width: 50,
                   height: 50,
                   decoration: new BoxDecoration(
@@ -134,7 +118,6 @@ class _DatePickerPageState extends State<DatePickerPage>
                 );
               },
               todayDayBuilder: (context, date, _) {
-<<<<<<< HEAD
                 return Center(
                   child: Container(
                     width: 50,
@@ -148,23 +131,6 @@ class _DatePickerPageState extends State<DatePickerPage>
                         '${date.day}',
                         style: TextStyle(),
                       ),
-=======
-                return Container(
-                  margin: const EdgeInsets.all(4.0),
-                  // padding: const EdgeInsets.only(top: 5.0, left: 6.0),
-                  // color: Colors.blue[300],
-                  width: 50,
-                  height: 50,
-                  decoration: new BoxDecoration(
-                    // color: Colors.blue[300],
-                    border: Border.all(color: Colors.blue[300]),
-                    shape: BoxShape.circle,
-                  ),
-                  child: Center(
-                    child: Text(
-                      '${date.day}',
-                      style: TextStyle(),
->>>>>>> b389b1fe85b2039414b14b96c62299c7c0b70530
                     ),
                   ),
                 );
