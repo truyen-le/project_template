@@ -52,9 +52,7 @@ class _HomePageState extends State<HomePage> {
         ),
         floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.white,
-          onPressed: () {
-            print(context.read<AuthenticationBloc>().state.user.email);
-          },
+          onPressed: () {},
           child: FlutterLogo(),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
